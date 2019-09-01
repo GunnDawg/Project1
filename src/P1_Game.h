@@ -18,5 +18,6 @@ struct Game
 {
 	GameWindow Window = { "Project1", 1600, 900 };
 	DeltaClock DeltaClock;
+    int mouse_x, mouse_y;
 	bool IsRunning = false;
 };
