@@ -72,26 +72,26 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>$(SolutionDir)obj\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)obj\$(Platform)\$(Configuration)\</IntDir>
-    <IncludePath>$(SolutionDir)deps\SDL2\include\;$(SolutionDir)deps\GLEW\include\;$(SolutionDir)deps\SPDLOG\include\;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)deps\SDL2\lib\x86\;$(SolutionDir)deps\GLEW\lib\Release\Win32\;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)dep\SDL2\include\;$(SolutionDir)dep\GLEW\include\;$(SolutionDir)dep\SPDLOG\include\;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)dep\SDL2\lib\x86\;$(SolutionDir)dep\GLEW\lib\Release\Win32\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)obj\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)obj\$(Platform)\$(Configuration)\</IntDir>
-    <IncludePath>$(SolutionDir)deps\SDL2\include\;$(SolutionDir)deps\GLEW\include\;$(SolutionDir)deps\SPDLOG\include\;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)deps\SDL2\lib\x86\;$(SolutionDir)deps\GLEW\lib\Release\Win32\;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)dep\SDL2\include\;$(SolutionDir)dep\GLEW\include\;$(SolutionDir)dep\SPDLOG\include\;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)dep\SDL2\lib\x86\;$(SolutionDir)dep\GLEW\lib\Release\Win32\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(SolutionDir)obj\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)obj\$(Platform)\$(Configuration)\</IntDir>
-    <IncludePath>$(SolutionDir)deps\SDL2\include\;$(SolutionDir)deps\GLEW\include\;$(SolutionDir)deps\SPDLOG\include\;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)deps\SDL2\lib\x64\;$(SolutionDir)deps\GLEW\lib\Release\x64\;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)dep\SDL2\include\;$(SolutionDir)dep\GLEW\include\;$(SolutionDir)dep\SPDLOG\include\;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)dep\SDL2\lib\x64\;$(SolutionDir)dep\GLEW\lib\Release\x64\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(SolutionDir)obj\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)obj\$(Platform)\$(Configuration)\</IntDir>
-    <IncludePath>$(SolutionDir)deps\SDL2\include\;$(SolutionDir)deps\GLEW\include\;$(SolutionDir)deps\SPDLOG\include\;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)deps\SDL2\lib\x64\;$(SolutionDir)deps\GLEW\lib\Release\x64\;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)dep\SDL2\include\;$(SolutionDir)dep\GLEW\include\;$(SolutionDir)dep\SPDLOG\include\;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)dep\SDL2\lib\x64\;$(SolutionDir)dep\GLEW\lib\Release\x64\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
