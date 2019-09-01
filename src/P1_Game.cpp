@@ -22,6 +22,8 @@ bool InitializeGame(Game* game)
 		return(0);
 	}
 
+    SDL_GetRelativeMouseState(&game->mouse_x, &game->mouse_y);
+
 	game->IsRunning = true;
 
 	return(1);
@@ -53,6 +55,13 @@ void HandleInput(Game* game)
 				}
 			}
 
+            case SDL_MOUSEMOTION:
+            {
+                game->mouse_x = evnt.motion.x;
+                game->mouse_y = evnt.motion.y;
+                break;
+            }
+
 			default:
 				break;
 		}
@@ -66,7 +75,8 @@ void Update(const Game* game)
 
 void Draw(const Game* game)
 {
-	glClearColor(1.0f, 0.0f, 0.0f, 1.0f);
+	glClearColor((float)game->mouse_x / game->Window.Width,
+                 (float)game->mouse_y / game->Window.Height, 0.0f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 
 	SDL_GL_SwapWindow(game->Window.Window);
