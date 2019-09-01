@@ -9,8 +9,9 @@
 Game* game = new Game;
 
 const float PHYSICS_DT = 50;  // milliseconds
-float physics_accum = 0;
-float dt_prev = 0;
+float dt = 0.0f;
+float physics_accum = 0.0f;
+float dt_prev = 0.0f;
 
 int main(int argc, char* args[])
 {
@@ -28,17 +29,18 @@ int main(int argc, char* args[])
 		//a delta time?
 		//UpdateDelta(&game->DeltaClock);
 
-		float dt = SDL_GetTicks() - dt_prev;
+		dt = SDL_GetTicks() - dt_prev;
 		dt_prev = dt;
 		physics_accum += dt;
-		while (physics_accum >= PHYSICS_DT) {
+		while (physics_accum >= PHYSICS_DT)
+		{
 			Update(game, PHYSICS_DT);
 			physics_accum -= PHYSICS_DT;
 		}
 		HandleInput(game);
 		Draw(game, dt);
 
-		LOG_INFO("{0}", dt);
+		LOG_INFO("DT: {0}", dt);
 	}
 
 	ShutdownGame(game);
