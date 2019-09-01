@@ -1,5 +1,5 @@
-#include <stdio.h>
 #include "P1_Game.h"
+#include "P1_Log.h"
 
 #pragma comment(lib, "glew32s.lib")
 #pragma comment(lib, "opengl32.lib")
@@ -12,7 +12,7 @@ int main(int argc, char* args[])
 {
 	if (!InitializeGame(game))
 	{
-		printf("Error starting Game. See logs!\n");
+		LOG_FATAL("Error starting Game. See logs!");
 		return(-1);
 	}
 
@@ -30,6 +30,7 @@ int main(int argc, char* args[])
 	ShutdownGame(game);
 
 	delete game;
+	game = nullptr;
 
 	return(0);
 }

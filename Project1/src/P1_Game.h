@@ -1,6 +1,7 @@
 #pragma once
 #include "P1_Window.h"
 #include "P1_DeltaClock.h"
+#include "P1_Log.h"
 
 struct Game;
 

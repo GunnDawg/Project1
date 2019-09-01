@@ -1,5 +1,6 @@
 #include "P1_Window.h"
-#include <stdio.h>
+#include "P1_Log.h"
+
 #include <gl/glew.h>
 
 bool InitializeWindow(GameWindow* window)
@@ -16,7 +17,7 @@ bool InitializeWindow(GameWindow* window)
 	window->Window = SDL_CreateWindow(window->Title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, window->Width, window->Height, SDL_WINDOW_OPENGL);
 	if (!window->Window)
 	{
-		printf("Error creating SDL_Window!\n");
+		LOG_FATAL("Error creating SDL_Window!");
 		ShutdownWindow(window);
 		return(0);
 	}
@@ -24,20 +25,20 @@ bool InitializeWindow(GameWindow* window)
 	window->Context = SDL_GL_CreateContext(window->Window);
 	if (!window->Context)
 	{
-		printf("Error creating OpenGL Context!\n");
+		LOG_FATAL("Error creating OpenGL Context!");
 		ShutdownWindow(window);
 		return(0);
 	}
 
 	if (glewInit() != GLEW_OK)
 	{
-		printf("Error initializing GLEW!\n");
+		LOG_FATAL("Error initializing GLEW!");
 		ShutdownWindow(window);
 		return(0);
 	}
 
 #ifdef _DEBUG
-	printf("%s\n", glGetString(GL_VERSION));
+	LOG_INFO("{0}", glGetString(GL_VERSION));
 #endif
 
 	SDL_GL_SetSwapInterval(1);

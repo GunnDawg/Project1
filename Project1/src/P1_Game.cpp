@@ -1,5 +1,4 @@
 #include "P1_Game.h"
-#include <stdio.h>
 #include <GL/glew.h>
 
 bool IsRunning(const Game* game)
@@ -9,15 +8,17 @@ bool IsRunning(const Game* game)
 
 bool InitializeGame(Game* game)
 {
+	Logger::Init();
+
 	if (SDL_Init(SDL_INIT_VIDEO) != 0)
 	{
-		printf("Error starting SDL!\n");
+		LOG_FATAL("Error initializing SDL!");
 		return(0);
 	}
 
 	if(!InitializeWindow(&game->Window))
 	{
-		printf("Error initializing SDL_Window!\n");
+		LOG_FATAL("Error initializing SDL_Window!");
 		return(0);
 	}
 

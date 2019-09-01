@@ -1,7 +1,6 @@
 #include "P1_DeltaClock.h"
+#include "P1_Log.h"
 #include <SDL.h>
-
-#include <stdio.h>
 
 void UpdateDelta(DeltaClock* clock)
 {
@@ -22,7 +21,8 @@ void UpdateDelta(DeltaClock* clock)
 	clock->TotalUpdates += 1;
 	clock->AveragegDeltaTime = clock->TotalDeltaTime / clock->TotalUpdates;
 
-#ifdef _DEBUG
-	printf("Delta Time: %f\nAverage Delta Time: %f\n", clock->DeltaTime, clock->AveragegDeltaTime);
-#endif
+//@Note: Uncomment this block to print out the delta and average delta times.
+//#ifdef _DEBUG
+//	LOG_INFO("Delta Time: {0}, Average Delta Time: {1}", clock->DeltaTime, clock->AveragegDeltaTime);
+//#endif
 }
