@@ -22,7 +22,7 @@ bool InitializeGame(Game* game)
 		return(0);
 	}
 
-    SDL_GetRelativeMouseState(&game->mouse_x, &game->mouse_y);
+    SDL_GetRelativeMouseState(&game->mouse.x, &game->mouse.y);
 
 	game->IsRunning = true;
 
@@ -57,8 +57,9 @@ void HandleInput(Game* game)
 
             case SDL_MOUSEMOTION:
             {
-                game->mouse_x = evnt.motion.x;
-                game->mouse_y = evnt.motion.y;
+                //game->mouse_x = evnt.motion.x;
+                //game->mouse_y = evnt.motion.y;
+				UpdateCursorPosition(&game->mouse, &evnt);
                 break;
             }
 
@@ -68,15 +69,15 @@ void HandleInput(Game* game)
 	}
 }
 
-void Update(const Game* game)
+void Update(const Game* game, const float pDT)
 {
 
 }
 
-void Draw(const Game* game)
+void Draw(const Game* game, float deltaTime)
 {
-	glClearColor((float)game->mouse_x / game->Window.Width,
-                 (float)game->mouse_y / game->Window.Height, 0.0f, 1.0f);
+	glClearColor((float)game->mouse.x / game->Window.Width,
+                 (float)game->mouse.y / game->Window.Height, 0.0f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 
 	SDL_GL_SwapWindow(game->Window.Window);

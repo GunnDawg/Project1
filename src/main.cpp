@@ -8,6 +8,10 @@
 
 Game* game = new Game;
 
+const float PHYSICS_DT = 50;  // milliseconds
+float physics_accum = 0;
+float dt_prev = 0;
+
 int main(int argc, char* args[])
 {
 	if (!InitializeGame(game))
@@ -16,15 +20,25 @@ int main(int argc, char* args[])
 		return(-1);
 	}
 
+	dt_prev = SDL_GetTicks();
+
 	while (IsRunning(game))
 	{
 		//@Performance: Is this the best place and method for obtaining and keeping
 		//a delta time?
-		UpdateDelta(&game->DeltaClock);
+		//UpdateDelta(&game->DeltaClock);
 
+		float dt = SDL_GetTicks() - dt_prev;
+		dt_prev = dt;
+		physics_accum += dt;
+		while (physics_accum >= PHYSICS_DT) {
+			Update(game, PHYSICS_DT);
+			physics_accum -= PHYSICS_DT;
+		}
 		HandleInput(game);
-		Update(game);
-		Draw(game);
+		Draw(game, dt);
+
+		LOG_INFO("{0}", dt);
 	}
 
 	ShutdownGame(game);

@@ -162,12 +162,14 @@
     <ClCompile Include="src\P1_DeltaClock.cpp" />
     <ClCompile Include="src\P1_Game.cpp" />
     <ClCompile Include="src\P1_Log.cpp" />
+    <ClCompile Include="src\P1_Mouse.cpp" />
     <ClCompile Include="src\P1_Window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\P1_DeltaClock.h" />
     <ClInclude Include="src\P1_Game.h" />
     <ClInclude Include="src\P1_Log.h" />
+    <ClInclude Include="src\P1_Mouse.h" />
     <ClInclude Include="src\P1_Window.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

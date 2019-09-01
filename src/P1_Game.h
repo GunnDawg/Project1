@@ -1,5 +1,6 @@
 #pragma once
 #include "P1_Window.h"
+#include "P1_Mouse.h"
 #include "P1_DeltaClock.h"
 #include "P1_Log.h"
 
@@ -9,8 +10,8 @@ bool IsRunning(const Game* game);
 bool InitializeGame(Game* game);
 
 void HandleInput(Game* game);
-void Update(const Game* game);
-void Draw(const Game* game);
+void Update(const Game* game, const float pDT);
+void Draw(const Game* game, float deltaTime);
 
 void ShutdownGame(Game* game);
 
@@ -18,6 +19,6 @@ struct Game
 {
 	GameWindow Window = { "Project1", 1600, 900 };
 	DeltaClock DeltaClock;
-    int mouse_x, mouse_y;
+	Mouse mouse;
 	bool IsRunning = false;
 };

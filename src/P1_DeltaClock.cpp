@@ -19,10 +19,10 @@ void UpdateDelta(DeltaClock* clock)
 	}
 
 	clock->TotalUpdates += 1;
-	clock->AveragegDeltaTime = clock->TotalDeltaTime / clock->TotalUpdates;
+	clock->AverageDeltaTime = clock->TotalDeltaTime / clock->TotalUpdates;
 
 //@Note: Uncomment this block to print out the delta and average delta times.
-//#ifdef _DEBUG
-//	LOG_INFO("Delta Time: {0}, Average Delta Time: {1}", clock->DeltaTime, clock->AveragegDeltaTime);
-//#endif
+#ifdef _DEBUG
+	LOG_INFO("Delta Time: {0}, Average Delta Time: {1}", clock->DeltaTime, clock->AverageDeltaTime);
+#endif
 }
