@@ -10,24 +10,24 @@ Game* game = new Game;
 
 int main(int argc, char* args[])
 {
-	if (!InitializeGame(*game))
+	if (!InitializeGame(game))
 	{
 		printf("Error starting Game. See logs!\n");
 		return(-1);
 	}
 
-	while (IsRunning(*game))
+	while (IsRunning(game))
 	{
 		//@Performance: Is this the best place and method for obtaining and keeping
 		//a delta time?
 		UpdateDelta(&game->DeltaClock);
 
-		HandleInput(*game);
-		Update(*game);
-		Draw(*game);
+		HandleInput(game);
+		Update(game);
+		Draw(game);
 	}
 
-	ShutdownGame(*game);
+	ShutdownGame(game);
 
 	delete game;
 

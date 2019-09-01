@@ -4,14 +4,14 @@
 
 struct Game;
 
-bool IsRunning(const Game& game);
-bool InitializeGame(Game& game);
+bool IsRunning(const Game* game);
+bool InitializeGame(Game* game);
 
-void HandleInput(Game& game);
-void Update(const Game& game);
-void Draw(const Game& game);
+void HandleInput(Game* game);
+void Update(const Game* game);
+void Draw(const Game* game);
 
-void ShutdownGame(Game& game);
+void ShutdownGame(Game* game);
 
 struct Game
 {
