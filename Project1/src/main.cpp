@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include "P1_Game.h"
-#include <memory>
 
 #pragma comment(lib, "glew32s.lib")
 #pragma comment(lib, "opengl32.lib")
@@ -29,6 +28,8 @@ int main(int argc, char* args[])
 	}
 
 	ShutdownGame(*game);
+
+	delete game;
 
 	return(0);
 }
