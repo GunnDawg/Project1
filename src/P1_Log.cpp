@@ -7,7 +7,7 @@ void Logger::Init()
 {
 	spdlog::set_pattern("%^[%T] %n: %v%$");
 
-	sCoreLogger = spdlog::stdout_color_mt("Project1");
+	sCoreLogger = spdlog::stdout_color_mt("Engine");
 	sCoreLogger->set_level(spdlog::level::trace);
 
 	sFileLogger = spdlog::basic_logger_mt("Log Info", "log.txt");
