@@ -41,7 +41,10 @@ bool InitializeWindow(GameWindow* window)
 	LOG_INFO("{0}", glGetString(GL_VERSION));
 #endif
 
-	SDL_GL_SetSwapInterval(1);
+	if (!SDL_GL_SetSwapInterval(1))
+	{
+		LOG_ERROR("Error setting SwapInterval / VSync!");
+	}
 
 	return(1);
 }
