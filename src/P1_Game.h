@@ -11,7 +11,7 @@ bool InitializeGame(Game* game);
 
 void HandleInput(Game* game);
 void Update(const Game* game, const float pDT);
-void Draw(const Game* game, float deltaTime);
+void Draw(const Game* game, double deltaTime);
 
 void ShutdownGame(Game* game);
 

@@ -74,7 +74,7 @@ void Update(const Game* game, const float pDT)
 
 }
 
-void Draw(const Game* game, float deltaTime)
+void Draw(const Game* game, double deltaTime)
 {
 	glClearColor((float)game->mouse.x / game->Window.Width,
                  (float)game->mouse.y / game->Window.Height, 0.0f, 1.0f);
