@@ -6,7 +6,7 @@
 #pragma comment(lib, "SDL2.lib")
 #pragma comment(lib, "SDL2main.lib")
 
-const double GETFREQUENCY = 1000 / static_cast<double>(SDL_GetPerformanceFrequency());
+const double GETFREQUENCY = (1000 / static_cast<double>(SDL_GetPerformanceFrequency()));
 
 int main(int argc, char* args[])
 {
