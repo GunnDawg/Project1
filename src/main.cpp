@@ -8,16 +8,16 @@
 
 int main(int argc, char* args[])
 {
-    Game* game = new Game;
-    if (!InitializeGame(game))
+	Game* game = new Game;
+	if (!InitializeGame(game))
 	{
 		LOG_FATAL("Error starting Game. See logs!");
 		return(-1);
 	}
 
-    const uint32_t PHYSICS_DT = 50;  // milliseconds
-    uint32_t physics_accum = 0;
-    uint32_t last_frame = SDL_GetTicks();
+	const uint32_t PHYSICS_DT = 50;  // milliseconds
+	uint32_t physics_accum = 0;
+	uint32_t last_frame = SDL_GetTicks();
 
 	while (IsRunning(game))
 	{
@@ -25,9 +25,9 @@ int main(int argc, char* args[])
 		//a delta time?
 		//UpdateDelta(&game->DeltaClock);
 
-        uint32_t now = SDL_GetTicks();
-        uint32_t dt = now - last_frame;
-        last_frame = now;
+		uint32_t now = SDL_GetTicks();
+		uint32_t dt = now - last_frame;
+		last_frame = now;
 
 		physics_accum += dt;
 		while (physics_accum >= PHYSICS_DT)
@@ -38,8 +38,8 @@ int main(int argc, char* args[])
 		HandleInput(game);
 		Draw(game, dt / 1000.0f);
 
-        LOG_INFO("DT: {0}", dt);
-    }
+		LOG_INFO("DT: {0}", dt);
+	}
 
 	ShutdownGame(game);
 
