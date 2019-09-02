@@ -6,6 +6,8 @@
 #pragma comment(lib, "SDL2.lib")
 #pragma comment(lib, "SDL2main.lib")
 
+const double GETFREQUENCY = 1000 / static_cast<double>(SDL_GetPerformanceFrequency());
+
 int main(int argc, char* args[])
 {
 	Game* game = new Game;
@@ -17,7 +19,7 @@ int main(int argc, char* args[])
 
 	const uint32_t PHYSICS_DT = 50;  // milliseconds
 	uint32_t physics_accum = 0;
-	uint32_t last_frame = SDL_GetTicks();
+	double last_frame = SDL_GetPerformanceCounter();
 
 	while (IsRunning(game))
 	{
@@ -25,8 +27,8 @@ int main(int argc, char* args[])
 		//a delta time?
 		//UpdateDelta(&game->DeltaClock);
 
-		uint32_t now = SDL_GetTicks();
-		uint32_t dt = now - last_frame;
+		uint32_t now = SDL_GetPerformanceCounter();
+		double dt = static_cast<double>((now - last_frame) * GETFREQUENCY);
 		last_frame = now;
 
 		physics_accum += dt;
