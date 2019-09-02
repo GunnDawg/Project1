@@ -18,8 +18,8 @@ int main(int argc, char* args[])
 	}
 
 	const uint32_t PHYSICS_DT = 50;  // milliseconds
-	uint32_t physics_accum = 0;
-	double last_frame = SDL_GetPerformanceCounter();
+	double physics_accum = 0.0;
+	uint64_t last_frame = SDL_GetPerformanceCounter();
 
 	while (IsRunning(game))
 	{
@@ -27,7 +27,7 @@ int main(int argc, char* args[])
 		//a delta time?
 		//UpdateDelta(&game->DeltaClock);
 
-		uint32_t now = SDL_GetPerformanceCounter();
+		uint64_t now = SDL_GetPerformanceCounter();
 		double dt = static_cast<double>((now - last_frame) * GETFREQUENCY);
 		last_frame = now;
 
@@ -38,7 +38,7 @@ int main(int argc, char* args[])
 			physics_accum -= PHYSICS_DT;
 		}
 		HandleInput(game);
-		Draw(game, dt / 1000.0f);
+		Draw(game, dt);
 
 		LOG_INFO("DT: {0}", dt);
 	}
