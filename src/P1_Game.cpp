@@ -1,6 +1,8 @@
 #include "P1_Game.h"
 #include <GL/glew.h>
 
+SDL_GameController* gamePad = nullptr;
+
 bool IsRunning(const Game* game)
 {
 	return game->IsRunning;
@@ -10,10 +12,19 @@ bool InitializeGame(Game* game)
 {
 	Logger::Init();
 
-	if (SDL_Init(SDL_INIT_VIDEO) != 0)
+	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_GAMECONTROLLER) != 0)
 	{
 		LOG_FATAL("Error initializing SDL!");
 		return(0);
+	}
+
+	for (size_t i = 0; i < SDL_NumJoysticks(); i++)
+	{
+		if ((SDL_IsGameController(i)))
+		{
+			gamePad = SDL_GameControllerOpen(i);
+			break;
+		}
 	}
 
 	if(!InitializeWindow(&game->Window))
@@ -54,6 +65,20 @@ void HandleInput(Game* game)
 						break;
 				}
 			}
+
+			case SDL_CONTROLLERBUTTONDOWN:
+			{
+				switch (evnt.cbutton.button)
+				{
+					case SDL_CONTROLLER_BUTTON_BACK:
+					{
+						game->IsRunning = false;
+					} break;
+
+					default:
+						break;
+				}
+			} break;
 
             case SDL_MOUSEMOTION:
             {
