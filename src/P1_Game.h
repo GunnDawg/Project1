@@ -18,7 +18,7 @@ void ShutdownGame(Game* game);
 struct Game
 {
 	GameWindow Window = { "Project1", 1600, 900 };
-	DeltaClock DeltaClock;
-	Mouse mouse;
+	DeltaClock DeltaClock = { 0 };
+	Mouse mouse = { 0 };
 	bool IsRunning = false;
 };
