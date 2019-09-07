@@ -23,10 +23,6 @@ int main(int argc, char* args[])
 
 	while (IsRunning(game))
 	{
-		//@Performance: Is this the best place and method for obtaining and keeping
-		//a delta time?
-		//UpdateDelta(&game->DeltaClock);
-
 		uint64_t now = SDL_GetPerformanceCounter();
 		double dt = static_cast<double>((now - last_frame) * GETFREQUENCY);
 		last_frame = now;
