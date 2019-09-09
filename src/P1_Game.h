@@ -23,5 +23,5 @@ struct Game
 	Mouse mouse = { 0 };
 	GamePad Controller = { 0 };
 	bool IsRunning = false;
-	bool UsingGamepad = false;
+	bool UsingGamepad = true;
 };
