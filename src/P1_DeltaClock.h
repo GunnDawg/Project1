@@ -1,5 +1,5 @@
 #pragma once
-#include <stdint.h>
+#include <SDL.h>
 
 struct DeltaClock;
 
@@ -7,10 +7,7 @@ void UpdateDelta(DeltaClock* clock);
 
 struct DeltaClock
 {
-	uint64_t CurrentTime = 0ULL;
-	uint64_t LastTime = 0ULL;
-	uint64_t TotalUpdates = 0ULL;
-	double DeltaTime = NULL;
-	double TotalDeltaTime = 0.0;
-	double AverageDeltaTime = 16.66;
+	const uint32_t PHYSICS_DT = 50;  // milliseconds
+	double physics_accum = 0.0;
+	uint64_t last_frame = SDL_GetPerformanceCounter();
 };

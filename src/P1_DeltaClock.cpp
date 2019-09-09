@@ -2,27 +2,13 @@
 #include "P1_Log.h"
 #include <SDL.h>
 
+const double GETFREQUENCY = (1000 / static_cast<double>(SDL_GetPerformanceFrequency()));
+
 void UpdateDelta(DeltaClock* clock)
 {
-	//@Note: Delta Time Calculations
-	clock->LastTime = clock->CurrentTime;
-	clock->CurrentTime = SDL_GetPerformanceCounter();
-	clock->DeltaTime = static_cast<double>((clock->CurrentTime - clock->LastTime) * 1000 / static_cast<double>(SDL_GetPerformanceFrequency()));
+	uint64_t now = SDL_GetPerformanceCounter();
+	double dt = static_cast<double>((now - clock->last_frame) * GETFREQUENCY);
+	clock->last_frame = now;
 
-	//@Note: Average Delta Time Calculations
-	//@FixMe: This is sort of hackey but if we do this calculation at the beginning
-	//of the game before the delta time has setttled, then it won't work correctly,
-	//not really sure why?
-	if (clock->DeltaTime < 100)
-	{
-		clock->TotalDeltaTime += clock->DeltaTime;
-	}
-
-	clock->TotalUpdates += 1;
-	clock->AverageDeltaTime = clock->TotalDeltaTime / clock->TotalUpdates;
-
-//@Note: Uncomment this block to print out the delta and average delta times.
-#ifdef _DEBUG
-	LOG_INFO("Delta Time: {0}, Average Delta Time: {1}", clock->DeltaTime, clock->AverageDeltaTime);
-#endif
+	clock->physics_accum += dt;
 }
