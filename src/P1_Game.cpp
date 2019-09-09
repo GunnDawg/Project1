@@ -1,7 +1,7 @@
 #include "P1_Game.h"
 #include <GL/glew.h>
 
-SDL_GameController* gamePad = nullptr;
+constexpr bool GamePadEnabled = true;
 
 bool IsRunning(const Game* game)
 {
@@ -18,12 +18,12 @@ bool InitializeGame(Game* game)
 		return(0);
 	}
 
-	for (size_t i = 0; i < SDL_NumJoysticks(); i++)
+	if (game->UsingGamepad)
 	{
-		if ((SDL_IsGameController(i)))
+		if (!InitializeGamepad(&game->Controller))
 		{
-			gamePad = SDL_GameControllerOpen(i);
-			break;
+			LOG_FATAL("Error initializing Gamepad!");
+			return(0);
 		}
 	}
 
@@ -33,7 +33,7 @@ bool InitializeGame(Game* game)
 		return(0);
 	}
 
-    SDL_GetRelativeMouseState(&game->mouse.x, &game->mouse.y);
+    SDL_GetMouseState(&game->mouse.x, &game->mouse.y);
 
 	game->IsRunning = true;
 
@@ -64,7 +64,7 @@ void HandleInput(Game* game)
 					default:
 						break;
 				}
-			}
+			} break;
 
 			case SDL_CONTROLLERBUTTONDOWN:
 			{
@@ -81,12 +81,9 @@ void HandleInput(Game* game)
 			} break;
 
             case SDL_MOUSEMOTION:
-            {
-                //game->mouse_x = evnt.motion.x;
-                //game->mouse_y = evnt.motion.y;
+			{
 				UpdateCursorPosition(&game->mouse, &evnt);
-                break;
-            }
+			} break;
 
 			default:
 				break;
@@ -111,6 +108,6 @@ void Draw(const Game* game, double deltaTime)
 void ShutdownGame(Game* game)
 {
 	ShutdownWindow(&game->Window);
-
+	ShutdownGamepad(&game->Controller);
 	SDL_Quit();
 }
