@@ -8,5 +8,6 @@ void ShutdownGamepad(GamePad* gamepad);
 
 struct GamePad
 {
-	SDL_GameController* controller;
+	SDL_GameController* controller = { 0 };
+	uint8_t controllerID = 0;
 };

@@ -5,9 +5,9 @@ bool InitializeGamepad(GamePad* gamepad)
 {
 	if (SDL_NumJoysticks())
 	{
-		if (SDL_IsGameController(0))
+		if (SDL_IsGameController(gamepad->controllerID))
 		{
-			gamepad->controller = SDL_GameControllerOpen(0);
+			gamepad->controller = SDL_GameControllerOpen(gamepad->controllerID);
 		}
 		else
 		{
