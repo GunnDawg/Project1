@@ -1,11 +1,17 @@
 #pragma once
 #include <SDL.h>
 
-struct Mouse;
+struct Mouse_t;
 
-void UpdateCursorPosition(Mouse* mouse, SDL_Event* evnt);
+namespace Input
+{
+	namespace Mouse
+	{
+		void Update(Mouse_t* mouse, SDL_Event* evnt);
+	}
+}
 
-struct Mouse
+struct Mouse_t
 {
 	int y;
 	int x;

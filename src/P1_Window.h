@@ -2,15 +2,15 @@
 #include <SDL.h>
 #include <stdint.h>
 
-struct GameWindow;
+struct Window_t;
 
 namespace Window
 {
-	bool Initialize(GameWindow* window);
-	void Shutdown(GameWindow* window);
+	bool Initialize(Window_t* window);
+	void Shutdown(Window_t* window);
 }
 
-struct GameWindow
+struct Window_t
 {
 	const char* mTitle;
 	uint16_t mWidth;

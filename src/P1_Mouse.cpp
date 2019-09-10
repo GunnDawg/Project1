@@ -1,7 +1,13 @@
 #include "P1_Mouse.h"
 
-void UpdateCursorPosition(Mouse* mouse, SDL_Event* evnt)
+namespace Input
 {
-	mouse->x = evnt->motion.x;
-	mouse->y = evnt->motion.y;
+	namespace Mouse
+	{
+		void Update(Mouse_t* mouse, SDL_Event* evnt)
+		{
+			mouse->x = evnt->motion.x;
+			mouse->y = evnt->motion.y;
+		}
+	}
 }

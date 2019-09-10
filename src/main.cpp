@@ -10,7 +10,7 @@ const double GETFREQUENCY = (1000 / static_cast<double>(SDL_GetPerformanceFreque
 
 int main(int argc, char* args[])
 {
-	Game* game = new Game;
+	Game_t* game = new Game_t;
 	if (!System::Initialize(game))
 	{
 		LOG_FATAL("Error starting Game. See logs!");

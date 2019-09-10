@@ -1,15 +1,18 @@
 #pragma once
 #include <SDL.h>
 
-struct GamePad;
+struct Gamepad_t;
 
-namespace Gamepad
+namespace Input
 {
-	bool Initialize(GamePad* gamepad);
-	void Shutdown(GamePad* gamepad);
+	namespace Gamepad
+	{
+		bool Initialize(Gamepad_t* gamepad);
+		void Shutdown(Gamepad_t* gamepad);
+	}
 }
 
-struct GamePad
+struct Gamepad_t
 {
 	SDL_GameController* controller = { 0 };
 	uint8_t controllerID = 0;

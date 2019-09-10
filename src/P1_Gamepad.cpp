@@ -1,45 +1,48 @@
 #include "P1_Gamepad.h"
 #include "P1_Log.h"
 
-namespace Gamepad
+namespace Input
 {
-	bool Initialize(GamePad* gamepad)
+	namespace Gamepad
 	{
-		if (SDL_NumJoysticks())
+		bool Initialize(Gamepad_t* gamepad)
 		{
-			if (SDL_IsGameController(gamepad->controllerID))
+			if (SDL_NumJoysticks())
 			{
-				gamepad->controller = SDL_GameControllerOpen(gamepad->controllerID);
-				if (gamepad->controller)
+				if (SDL_IsGameController(gamepad->controllerID))
 				{
-					LOG_INFO("Controller successfully initialized");
-					return(1);
+					gamepad->controller = SDL_GameControllerOpen(gamepad->controllerID);
+					if (gamepad->controller)
+					{
+						LOG_INFO("Controller successfully initialized");
+						return(1);
+					}
+					else
+					{
+						LOG_FATAL("Error setting up controller");
+						return(0);
+					}
 				}
 				else
 				{
-					LOG_FATAL("Error setting up controller");
+					LOG_FATAL("Device is not a recognized controller");
 					return(0);
 				}
 			}
 			else
 			{
-				LOG_FATAL("Device is not a recognized controller");
+				LOG_FATAL("No Gamepads Detected");
 				return(0);
 			}
 		}
-		else
-		{
-			LOG_FATAL("No Gamepads Detected");
-			return(0);
-		}
-	}
 
-	void Shutdown(GamePad* gamepad)
-	{
-		if (gamepad->controller)
+		void Shutdown(Gamepad_t* gamepad)
 		{
-			SDL_GameControllerClose(gamepad->controller);
-			gamepad->controller = nullptr;
+			if (gamepad->controller)
+			{
+				SDL_GameControllerClose(gamepad->controller);
+				gamepad->controller = nullptr;
+			}
 		}
 	}
 }
