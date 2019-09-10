@@ -11,7 +11,7 @@ const double GETFREQUENCY = (1000 / static_cast<double>(SDL_GetPerformanceFreque
 int main(int argc, char* args[])
 {
 	Game* game = new Game;
-	if (!InitializeGame(game))
+	if (!System::Initialize(game))
 	{
 		LOG_FATAL("Error starting Game. See logs!");
 		return(-1);
@@ -21,7 +21,7 @@ int main(int argc, char* args[])
 	double physics_accum = 0.0;
 	uint64_t last_frame = SDL_GetPerformanceCounter();
 
-	while (IsRunning(game))
+	while (System::IsRunning(game))
 	{
 		uint64_t now = SDL_GetPerformanceCounter();
 		double dt = static_cast<double>((now - last_frame) * GETFREQUENCY);
@@ -30,16 +30,16 @@ int main(int argc, char* args[])
 		physics_accum += dt;
 		while (physics_accum >= PHYSICS_DT)
 		{
-			Update(game, PHYSICS_DT / 1000.0f);
+			System::Update(game, PHYSICS_DT / 1000.0f);
 			physics_accum -= PHYSICS_DT;
 		}
-		HandleInput(game);
-		Draw(game, dt);
+		System::HandleInput(game);
+		System::Draw(game, dt);
 
-		LOG_INFO("DT: {0}", dt);
+		//LOG_INFO("DT: {0}", dt);
 	}
 
-	ShutdownGame(game);
+	System::Shutdown(game);
 
 	delete game;
 	game = nullptr;

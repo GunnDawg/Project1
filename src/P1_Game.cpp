@@ -3,50 +3,52 @@
 
 constexpr bool GamePadEnabled = true;
 
-bool IsRunning(const Game* game)
+namespace System
 {
-	return game->IsRunning;
-}
-
-bool InitializeGame(Game* game)
-{
-	Logger::Init();
-
-	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_GAMECONTROLLER) != 0)
+	bool IsRunning(const Game* game)
 	{
-		LOG_FATAL("Error initializing SDL!");
-		return(0);
+		return game->IsRunning;
 	}
 
-	if (game->UsingGamepad)
+	bool Initialize(Game* game)
 	{
-		if (!InitializeGamepad(&game->Controller))
+		Logger::Init();
+
+		if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_GAMECONTROLLER) != 0)
 		{
-			LOG_FATAL("Error initializing Gamepad!");
+			LOG_FATAL("Error initializing SDL!");
 			return(0);
 		}
-	}
 
-	if(!InitializeWindow(&game->Window))
-	{
-		LOG_FATAL("Error initializing SDL_Window!");
-		return(0);
-	}
-
-    SDL_GetMouseState(&game->mouse.x, &game->mouse.y);
-
-	game->IsRunning = true;
-
-	return(1);
-}
-
-void HandleInput(Game* game)
-{
-	SDL_Event evnt;
-	while (SDL_PollEvent(&evnt))
-	{
-		switch (evnt.type)
+		if (!Window::Initialize(&game->Window))
 		{
+			LOG_FATAL("Error initializing SDL_Window!");
+			return(0);
+		}
+
+		if (game->UsingGamepad)
+		{
+			if (!Gamepad::Initialize(&game->Controller))
+			{
+				LOG_FATAL("Error initializing Gamepad!");
+				return(0);
+			}
+		}
+
+		//SDL_GetMouseState(&game->mouse.x, &game->mouse.y);
+
+		game->IsRunning = true;
+
+		return(1);
+	}
+
+	void HandleInput(Game* game)
+	{
+		SDL_Event evnt;
+		while (SDL_PollEvent(&evnt))
+		{
+			switch (evnt.type)
+			{
 			case SDL_QUIT:
 			{
 				game->IsRunning = false;
@@ -56,13 +58,13 @@ void HandleInput(Game* game)
 			{
 				switch (evnt.key.keysym.sym)
 				{
-					case SDLK_ESCAPE:
-					{
-						game->IsRunning = false;
-					} break;
+				case SDLK_ESCAPE:
+				{
+					game->IsRunning = false;
+				} break;
 
-					default:
-						break;
+				default:
+					break;
 				}
 			} break;
 
@@ -70,44 +72,45 @@ void HandleInput(Game* game)
 			{
 				switch (evnt.cbutton.button)
 				{
-					case SDL_CONTROLLER_BUTTON_BACK:
-					{
-						game->IsRunning = false;
-					} break;
+				case SDL_CONTROLLER_BUTTON_BACK:
+				{
+					game->IsRunning = false;
+				} break;
 
-					default:
-						break;
+				default:
+					break;
 				}
 			} break;
 
-            case SDL_MOUSEMOTION:
+			case SDL_MOUSEMOTION:
 			{
 				UpdateCursorPosition(&game->mouse, &evnt);
 			} break;
 
 			default:
 				break;
+			}
 		}
 	}
-}
 
-void Update(const Game* game, const float pDT)
-{
+	void Update(const Game* game, const float pDT)
+	{
 
-}
+	}
 
-void Draw(const Game* game, double deltaTime)
-{
-	glClearColor((float)game->mouse.x / game->Window.Width,
-                 (float)game->mouse.y / game->Window.Height, 0.0f, 1.0f);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
+	void Draw(const Game* game, double deltaTime)
+	{
+		glClearColor((float)game->mouse.x / game->Window.mWidth,
+			(float)game->mouse.y / game->Window.mHeight, 0.0f, 1.0f);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 
-	SDL_GL_SwapWindow(game->Window.Window);
-}
+		SDL_GL_SwapWindow(game->Window.mWindow);
+	}
 
-void ShutdownGame(Game* game)
-{
-	ShutdownWindow(&game->Window);
-	ShutdownGamepad(&game->Controller);
-	SDL_Quit();
+	void Shutdown(Game* game)
+	{
+		Window::Shutdown(&game->Window);
+		Gamepad::Shutdown(&game->Controller);
+		SDL_Quit();
+	}
 }

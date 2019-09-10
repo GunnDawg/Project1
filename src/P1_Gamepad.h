@@ -3,8 +3,11 @@
 
 struct GamePad;
 
-bool InitializeGamepad(GamePad* gamepad);
-void ShutdownGamepad(GamePad* gamepad);
+namespace Gamepad
+{
+	bool Initialize(GamePad* gamepad);
+	void Shutdown(GamePad* gamepad);
+}
 
 struct GamePad
 {

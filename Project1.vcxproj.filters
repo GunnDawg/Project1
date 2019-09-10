@@ -29,6 +29,9 @@
     <ClCompile Include="src\P1_Mouse.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\P1_Gamepad.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\P1_Window.h">
@@ -44,6 +47,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\P1_Mouse.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\P1_Gamepad.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

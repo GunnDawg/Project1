@@ -4,15 +4,18 @@
 
 struct GameWindow;
 
-bool InitializeWindow(GameWindow* window);
-void ShutdownWindow(GameWindow* window);
+namespace Window
+{
+	bool Initialize(GameWindow* window);
+	void Shutdown(GameWindow* window);
+}
 
 struct GameWindow
 {
-	const char* Title;
-	uint16_t Width;
-	uint16_t Height;
+	const char* mTitle;
+	uint16_t mWidth;
+	uint16_t mHeight;
 
-	SDL_Window* Window;
-	SDL_GLContext Context;
+	SDL_Window* mWindow;
+	SDL_GLContext mContext;
 };

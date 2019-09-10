@@ -7,14 +7,17 @@
 
 struct Game;
 
-bool IsRunning(const Game* game);
-bool InitializeGame(Game* game);
+namespace System
+{
+	bool IsRunning(const Game* game);
+	bool Initialize(Game* game);
 
-void HandleInput(Game* game);
-void Update(const Game* game, const float pDT);
-void Draw(const Game* game, double deltaTime);
+	void HandleInput(Game* game);
+	void Update(const Game* game, const float pDT);
+	void Draw(const Game* game, double deltaTime);
 
-void ShutdownGame(Game* game);
+	void Shutdown(Game* game);
+}
 
 struct Game
 {
