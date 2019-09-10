@@ -5,7 +5,7 @@ namespace Input
 {
 	namespace Gamepad
 	{
-		bool Initialize(Gamepad_t* gamepad)
+		bool Initialize(Controller* gamepad)
 		{
 			if (SDL_NumJoysticks())
 			{
@@ -36,7 +36,7 @@ namespace Input
 			}
 		}
 
-		void Shutdown(Gamepad_t* gamepad)
+		void Shutdown(Controller* gamepad)
 		{
 			if (gamepad->controller)
 			{

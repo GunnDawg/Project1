@@ -1,17 +1,17 @@
 #pragma once
 #include <SDL.h>
 
-struct Mouse_t;
+struct Cursor;
 
 namespace Input
 {
 	namespace Mouse
 	{
-		void Update(Mouse_t* mouse, SDL_Event* evnt);
+		void Update(Cursor* mouse, SDL_Event* evnt);
 	}
 }
 
-struct Mouse_t
+struct Cursor
 {
 	int y;
 	int x;

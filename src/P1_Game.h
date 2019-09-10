@@ -5,26 +5,26 @@
 #include "P1_DeltaClock.h"
 #include "P1_Log.h"
 
-struct Game_t;
+struct Game;
 
 namespace System
 {
-	bool IsRunning(const Game_t* game);
-	bool Initialize(Game_t* game);
+	bool IsRunning(const Game* game);
+	bool Initialize(Game* game);
 
-	void HandleInput(Game_t* game);
-	void Update(const Game_t* game, const float pDT);
-	void Draw(const Game_t* game, double deltaTime);
+	void HandleInput(Game* game);
+	void Update(const Game* game, const float pDT);
+	void Draw(const Game* game, double deltaTime);
 
-	void Shutdown(Game_t* game);
+	void Shutdown(Game* game);
 }
 
-struct Game_t
+struct Game
 {
-	Window_t Window = { "Project1", 1600, 900 };
+	GameWindow Window = { "Project1", 1600, 900 };
 	DeltaClock DeltaClock = { 0 };
-	Mouse_t mouse = { 0 };
-	Gamepad_t Controller = { 0 };
+	Cursor Mouse = { 0 };
+	Controller Controller = { 0 };
 	bool IsRunning = false;
 	bool UsingGamepad = true;
 };

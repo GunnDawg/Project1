@@ -5,12 +5,12 @@ constexpr bool GamePadEnabled = true;
 
 namespace System
 {
-	bool IsRunning(const Game_t* game)
+	bool IsRunning(const Game* game)
 	{
 		return game->IsRunning;
 	}
 
-	bool Initialize(Game_t* game)
+	bool Initialize(Game* game)
 	{
 		Logger::Init();
 
@@ -42,7 +42,7 @@ namespace System
 		return(1);
 	}
 
-	void HandleInput(Game_t* game)
+	void HandleInput(Game* game)
 	{
 		SDL_Event evnt;
 		while (SDL_PollEvent(&evnt))
@@ -84,7 +84,7 @@ namespace System
 
 				case SDL_MOUSEMOTION:
 				{
-					Input::Mouse::Update(&game->mouse, &evnt);
+					Input::Mouse::Update(&game->Mouse, &evnt);
 				} break;
 
 				default:
@@ -93,21 +93,21 @@ namespace System
 		}
 	}
 
-	void Update(const Game_t* game, const float pDT)
+	void Update(const Game* game, const float pDT)
 	{
 
 	}
 
-	void Draw(const Game_t* game, double deltaTime)
+	void Draw(const Game* game, double deltaTime)
 	{
-		glClearColor((float)game->mouse.x / game->Window.mWidth,
-			(float)game->mouse.y / game->Window.mHeight, 0.0f, 1.0f);
+		glClearColor((float)game->Mouse.x / game->Window.mWidth,
+			(float)game->Mouse.y / game->Window.mHeight, 0.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 
 		SDL_GL_SwapWindow(game->Window.mWindow);
 	}
 
-	void Shutdown(Game_t* game)
+	void Shutdown(Game* game)
 	{
 		Window::Shutdown(&game->Window);
 		Input::Gamepad::Shutdown(&game->Controller);

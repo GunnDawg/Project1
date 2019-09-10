@@ -5,7 +5,7 @@
 
 namespace Window
 {
-	bool Initialize(Window_t* window)
+	bool Initialize(GameWindow* window)
 	{
 		SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
 		SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 3);
@@ -52,7 +52,7 @@ namespace Window
 		return(1);
 	}
 
-	void Shutdown(Window_t* window)
+	void Shutdown(GameWindow* window)
 	{
 		if (window->mWindow)
 		{
